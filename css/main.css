@@ -25,3 +25,18 @@ h1 {
     font-weight: normal;
     border-bottom: 1px solid #000;
 }
+@media only screen
+    and (max-device-width:320px)
+    and (orientation:portrait){
+    body {
+        font-size: 1.0em;
+    }
+    article, footer {
+        width: auto;
+        min-width: 0;
+        max-width: none;
+    }
+    article {
+        padding: .5em;
+    }
+}
