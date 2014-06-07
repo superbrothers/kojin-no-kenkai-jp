@@ -1,0 +1,27 @@
+html { background: #eee }
+body {
+    font-size: 1.2em;
+    font-family: "ヒラギノ明朝 Pro W3", "細明朝体", "ＭＳ Ｐ明朝", serif;
+}
+article, footer {
+    margin: 0 auto;
+    min-width: 320px;
+    max-width: 640px;
+    width: 80%;
+}
+article {
+    margin-top: 2.5em;
+    padding: 2.0em;
+    background: #fff;
+}
+footer {
+    text-align: center;
+    color: #666;
+    font-size: .8em;
+}
+h1 {
+    font-size: 1.2em;
+    display: inline;
+    font-weight: normal;
+    border-bottom: 1px solid #000;
+}
