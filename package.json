@@ -1,0 +1,35 @@
+{
+  "name": "kojin-no",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/superbrothers/kojin-no",
+  "author": "Kazuki Suda <kazuki.suda@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "lint": "eslint *.js",
+    "build": "gulp",
+    "serve": "gulp serve",
+    "serve:dist": "gulp serve:dist",
+    "deploy": "gulp deploy"
+  },
+  "devDependencies": {
+    "babel-core": "^6.24.1",
+    "babel-preset-es2015": "^6.24.1",
+    "bower": "^1.8.0",
+    "browser-sync": "^2.18.8",
+    "del": "^2.2.2",
+    "eslint": "^3.19.0",
+    "gulp": "^3.9.1",
+    "gulp-autoprefixer": "^3.1.1",
+    "gulp-cssnano": "^2.1.2",
+    "gulp-gh-pages": "^0.5.4",
+    "gulp-htmlmin": "^3.0.0",
+    "gulp-if": "^2.0.2",
+    "gulp-inject": "^4.2.0",
+    "gulp-load-plugins": "^1.5.0",
+    "gulp-useref": "^3.1.2",
+    "husky": "^0.13.3",
+    "run-sequence": "^1.2.2",
+    "wiredep": "^4.0.0"
+  }
+}
