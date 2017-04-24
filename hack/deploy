@@ -10,5 +10,6 @@ chmod 600 ./id_ecdsa
 ssh-add ./id_ecdsa
 git config --global user.email "travis"
 git config --global user.name "travis"
+git config --global --add "url.git@github.com".pushInsteadOf "https://github.com/"
 yarn run deploy
 # vim: ft=sh
