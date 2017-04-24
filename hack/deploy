@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-set -ex
+set -e
 
 [[ "$TRAVIS_BRANCH" != "master" ]] && exit
 
