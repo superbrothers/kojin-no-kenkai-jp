@@ -8,5 +8,7 @@ openssl aes-256-cbc -K $encrypted_4ddda811a5fd_key -iv $encrypted_4ddda811a5fd_i
 eval "$(ssh-agent -s)"
 chmod 600 ./id_ecdsa
 ssh-add ./id_ecdsa
+git config --global user.email "travis"
+git config --global user.name "travis"
 yarn run deploy
 # vim: ft=sh
