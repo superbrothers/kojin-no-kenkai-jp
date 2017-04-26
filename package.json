@@ -11,6 +11,7 @@
     "serve": "gulp serve",
     "serve:dist": "gulp serve:dist",
     "deploy": "gulp deploy",
+    "postinstall": "bower install",
     "precommit": "yarn run lint"
   },
   "devDependencies": {
