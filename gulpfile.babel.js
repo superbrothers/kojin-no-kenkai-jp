@@ -1,29 +1,30 @@
 "use strict";
 
-import gulp from "gulp";
+require("@babel/register");
+
+import { src, dest, series, parallel, watch } from "gulp";
 import gulpLoadPlugins from "gulp-load-plugins";
 import del from "del";
 import { stream as wiredep } from "wiredep";
 import browserSync from "browser-sync";
-import runSequence from "run-sequence";
 
 const $ = gulpLoadPlugins();
 const reload = browserSync.reload;
 
-gulp.task("clean", () => del([".tmp", "dist"], {dot: true}));
+export const clean = () => del([".tmp", "dist"], {dot: true});
 
-gulp.task("bower", () =>
-    gulp.src("src/index.html")
+export const bower = () => {
+    return src("src/index.html")
         .pipe(wiredep({optional: "configuration", goes: "here"}))
-        .pipe(gulp.dest("./src"))
-);
+        .pipe(dest("./src"));
+};
 
-gulp.task("copy", () =>
-    gulp.src(["src/CNAME"])
-        .pipe(gulp.dest("./dist"))
-);
+export const copy = () => {
+    return src(["src/CNAME"])
+        .pipe(dest("./dist"));
+};
 
-gulp.task("styles", () => {
+export const styles = () => {
     const AUTOPREFIXER_BROWSERS = [
         "ie >= 10",
         "ie_mob >= 10",
@@ -36,13 +37,13 @@ gulp.task("styles", () => {
         "bb >= 10"
     ];
 
-    return gulp.src(["src/assets/styles/**/*.css"])
+    return src(["src/assets/styles/**/*.css"])
         .pipe($.autoprefixer(AUTOPREFIXER_BROWSERS))
-        .pipe(gulp.dest(".tmp/assets/styles"));
-});
+        .pipe(dest(".tmp/assets/styles"));
+};
 
-gulp.task("html", () =>
-    gulp.src("src/**/*.html")
+export const html = () => {
+    return src("src/**/*.html")
         .pipe($.useref({searchPath: "{.tmp,src}"}))
         .pipe($.if("*.css", $.cssnano()))
         .pipe($.if("*.html", $.htmlmin({
@@ -56,33 +57,33 @@ gulp.task("html", () =>
             removeStyleLinkTypeAttributes: true,
             removeOptionalTags: true
         })))
-        .pipe(gulp.dest("dist"))
-);
+        .pipe(dest("dist"));
+};
 
-gulp.task("serve", ["styles"], () => {
+export const serve = series(styles, () => {
     browserSync({
         notify: false,
         server: [".tmp", "src"],
         port: 3000
     });
 
-    gulp.watch(["src/**/*.html"], reload);
-    gulp.watch(["src/assets/**/*css"], ["styles", reload]);
+    watch(["src/**/*.html"], series(reload));
+    watch(["src/assets/**/*css"], series("styles", reload));
 });
 
-gulp.task("serve:dist", ["default"], () =>
+export const default_task = series(clean, copy, parallel(styles, html));
+
+export const serve_dist = series(default_task, () => {
     browserSync({
         notify: false,
         server: "dist",
         port: 3000
-    })
-);
+    });
+});
 
-gulp.task("default", ["clean"], done =>
-    runSequence(["copy", "styles", "html"], done)
-);
+export const deploy = series(default_task, () => {
+    src("./dist/**/*")
+        .pipe($.ghPages());
+});
 
-gulp.task("deploy", ["default"], () =>
-    gulp.src("./dist/**/*")
-        .pipe($.ghPages())
-);
+export default default_task;
