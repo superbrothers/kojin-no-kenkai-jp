@@ -81,9 +81,4 @@ export const serve_dist = series(default_task, () => {
     });
 });
 
-export const deploy = series(default_task, () => {
-    src("./dist/**/*")
-        .pipe($.ghPages());
-});
-
 export default default_task;

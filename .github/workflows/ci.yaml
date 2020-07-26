@@ -1,0 +1,33 @@
+name: CI
+
+on:
+  push:
+    branches: [master]
+    tags: ["v*"]
+    paths-ignore: ['**.md']
+  pull_request:
+    types: [opened, synchronize]
+    paths-ignore: ['**.md']
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - uses: asdf-vm/actions/install@v1
+      with:
+        tool_versions: |
+          nodejs 14.6.0
+          yarn 1.22.4
+        before_install: |
+          # Import the Node.js release team's OpenPGP keys to main keyring
+          # https://github.com/asdf-vm/asdf-nodejs#install
+          ${ASDF_DATA_DIR:=$HOME/.asdf}/plugins/nodejs/bin/import-release-team-keyring
+    - run: yarn install
+    - run: yarn run lint
+    - run: yarn build
+    - if: github.ref == 'refs/heads/master'
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./dist
