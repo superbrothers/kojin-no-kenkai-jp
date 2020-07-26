@@ -5,7 +5,6 @@ require("@babel/register");
 import { src, dest, series, parallel, watch } from "gulp";
 import gulpLoadPlugins from "gulp-load-plugins";
 import del from "del";
-import { stream as wiredep } from "wiredep";
 import browserSync from "browser-sync";
 import cssnano from "cssnano";
 
@@ -13,12 +12,6 @@ const $ = gulpLoadPlugins();
 const reload = browserSync.reload;
 
 export const clean = () => del([".tmp", "dist"], {dot: true});
-
-export const bower = () => {
-    return src("src/index.html")
-        .pipe(wiredep({optional: "configuration", goes: "here"}))
-        .pipe(dest("./src"));
-};
 
 export const copy = () => {
     return src(["src/CNAME"])
@@ -69,7 +62,8 @@ export const serve = series(styles, () => {
     });
 
     watch(["src/**/*.html"], series(reload));
-    watch(["src/assets/**/*css"], series("styles", reload));
+    watch(["src/assets/**/*.css"], series("styles", reload));
+    watch(["node_modules/@css/**/*.css"], series("styles", reload));
 });
 
 export const default_task = series(clean, copy, parallel(styles, html));

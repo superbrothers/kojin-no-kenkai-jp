@@ -10,15 +10,13 @@
     "build": "gulp",
     "serve": "gulp serve",
     "serve:dist": "gulp serve_dist",
-    "deploy": "gulp deploy",
-    "postinstall": "bower install",
     "precommit": "yarn run lint"
   },
   "devDependencies": {
     "@babel/core": "^7.10.5",
     "@babel/preset-env": "^7.10.4",
     "@babel/register": "^7.10.5",
-    "bower": "^1.8.8",
+    "@css/normalize.css": "npm:normalize.css@^8.0.1",
     "browser-sync": "^2.26.10",
     "cssnano": "^4.1.10",
     "del": "^5.1.0",
@@ -31,7 +29,6 @@
     "gulp-load-plugins": "^2.0.3",
     "gulp-postcss": "^8.0.0",
     "gulp-useref": "^4.0.1",
-    "husky": "^4.2.5",
-    "wiredep": "^4.0.0"
+    "husky": "^4.2.5"
   }
 }
