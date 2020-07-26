@@ -2,4 +2,4 @@
 /dist
 /.tmp
 /.publish
-/src/assets/components
+*.log
