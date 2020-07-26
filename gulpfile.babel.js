@@ -7,6 +7,7 @@ import gulpLoadPlugins from "gulp-load-plugins";
 import del from "del";
 import { stream as wiredep } from "wiredep";
 import browserSync from "browser-sync";
+import cssnano from "cssnano";
 
 const $ = gulpLoadPlugins();
 const reload = browserSync.reload;
@@ -45,7 +46,7 @@ export const styles = () => {
 export const html = () => {
     return src("src/**/*.html")
         .pipe($.useref({searchPath: "{.tmp,src}"}))
-        .pipe($.if("*.css", $.cssnano()))
+        .pipe($.if("*.css", $.postcss([cssnano()])))
         .pipe($.if("*.html", $.htmlmin({
             removeComments: true,
             collapseWhitespace: true,
