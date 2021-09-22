@@ -58,7 +58,7 @@ export const serve = series(styles, () => {
     browserSync({
         notify: false,
         server: [".tmp", "src"],
-        port: 3000
+        port: 8001
     });
 
     watch(["src/**/*.html"], series(reload));
@@ -72,7 +72,7 @@ export const serve_dist = series(default_task, () => {
     browserSync({
         notify: false,
         server: "dist",
-        port: 3000
+        port: 8001
     });
 });
 
