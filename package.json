@@ -10,7 +10,7 @@
     "build": "gulp",
     "serve": "gulp serve",
     "serve:dist": "gulp serve_dist",
-    "precommit": "yarn run lint"
+    "precommit": "npm run lint"
   },
   "devDependencies": {
     "@babel/core": "^7.10.5",
