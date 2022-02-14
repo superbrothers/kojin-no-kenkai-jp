@@ -13,22 +13,22 @@
     "precommit": "npm run lint"
   },
   "devDependencies": {
-    "@babel/core": "^7.10.5",
-    "@babel/preset-env": "^7.10.4",
-    "@babel/register": "^7.10.5",
+    "@babel/core": "^7.17.2",
+    "@babel/preset-env": "^7.16.11",
+    "@babel/register": "^7.17.0",
     "@css/normalize.css": "npm:normalize.css@^8.0.1",
-    "browser-sync": "^2.26.10",
-    "cssnano": "^4.1.10",
-    "del": "^5.1.0",
-    "eslint": "^7.5.0",
+    "browser-sync": "^2.27.7",
+    "cssnano": "^5.0.17",
+    "del": "^6.0.0",
+    "eslint": "^8.9.0",
     "gulp": "^4.0.2",
-    "gulp-autoprefixer": "^7.0.1",
+    "gulp-autoprefixer": "^8.0.0",
     "gulp-htmlmin": "^5.0.1",
     "gulp-if": "^3.0.0",
     "gulp-inject": "^5.0.5",
     "gulp-load-plugins": "^2.0.3",
-    "gulp-postcss": "^8.0.0",
-    "gulp-useref": "^4.0.1",
-    "husky": "^4.2.5"
+    "gulp-postcss": "^9.0.1",
+    "gulp-useref": "^5.0.0",
+    "husky": "^7.0.4"
   }
 }
